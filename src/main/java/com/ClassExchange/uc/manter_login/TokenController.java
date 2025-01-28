@@ -2,6 +2,7 @@ package com.ClassExchange.uc.manter_login;
 
 import com.ClassExchange.uc.manter_roles.Role;
 import com.ClassExchange.uc.manter_usuarios.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,8 +19,13 @@ import java.util.stream.Collectors;
 @RestController
 public class TokenController {
 
-    private final JwtEncoder jwtEncoder;
-    private final UserRepository userRepository;
+    @Autowired
+    private JwtEncoder jwtEncoder;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     public TokenController(JwtEncoder jwtEncoder,
