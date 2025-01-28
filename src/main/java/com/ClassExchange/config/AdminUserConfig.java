@@ -31,7 +31,7 @@ public class AdminUserConfig implements CommandLineRunner {
 
         var roleAdmin = roleRepository.findByName(Role.Values.ADMIN.name());
 
-        var userAdmin = userRepository.findByUsername("admin");
+        var userAdmin = userRepository.findByEmail("admin@gmail.com");
 
         userAdmin.ifPresentOrElse(
                 user -> {
@@ -39,8 +39,11 @@ public class AdminUserConfig implements CommandLineRunner {
                 },
                 () -> {
                     var user = new User();
-                    user.setUsername("admin");
+                    user.setName("ADMINISTRADOR");
+                    user.setEmail("admin@gmail.com");
                     user.setPassword(passwordEncoder.encode("123"));
+                    user.setSiape("12345");
+                    user.setCelular("67 9999999");
                     user.setRoles(Set.of(roleAdmin));
                     userRepository.save(user);
                 }

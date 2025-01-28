@@ -31,7 +31,7 @@ public class TweetService {
                         new FeedItemDto(
                                 tweet.getTweetId(),
                                 tweet.getContent(),
-                                tweet.getUser().getUsername())
+                                tweet.getUser().getName())
                 );
 
         return new FeedDto(

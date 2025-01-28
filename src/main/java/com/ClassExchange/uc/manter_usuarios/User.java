@@ -19,10 +19,17 @@ public class User {
     @Column(name = "user_id")
     private UUID userId;
 
+    private String name;
+
     @Column(unique = true)
-    private String username;
+    private String email;
 
     private String password;
+
+    @Column(unique = true)
+    private String siape;
+
+    private String celular;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
