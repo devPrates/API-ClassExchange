@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -18,23 +19,23 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<String> newUser(@RequestBody CreateUserMapper dto) {
+    public ResponseEntity<?> newUser(@RequestBody CreateUserMapper dto) {
         userService.createNewUser(dto);
-        return ResponseEntity.ok("usuário criado com sucesso");
+        return ResponseEntity.ok(Map.of("message", "Usuário criado com sucesso"));
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
-    public ResponseEntity<String> deleteUser(@PathVariable("id") UUID userId) {
+    public ResponseEntity<?> deleteUser(@PathVariable("id") UUID userId) {
         userService.deleteUserById(userId);
-        return ResponseEntity.ok("usuário excluído com sucesso");
+        return ResponseEntity.ok(Map.of("message","Usuário excluido com sucesso"));
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
-    public ResponseEntity<String> updateUser(@PathVariable("id") UUID userId, @RequestBody UpdateUserMapper dto) {
+    public ResponseEntity<?> updateUser(@PathVariable("id") UUID userId, @RequestBody UpdateUserMapper dto) {
         userService.updateUser(userId, dto);
-        return ResponseEntity.ok("Usuário atualizado com sucesso");
+        return ResponseEntity.ok(Map.of("message","Usuário atualizado com sucesso"));
     }
 
     @GetMapping
