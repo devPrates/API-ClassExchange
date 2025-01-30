@@ -7,7 +7,7 @@ import lombok.*;
 import java.time.Instant;
 
 @Entity
-@Table(name = "tb_curso")
+@Table(name = "tb_cursos")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -42,5 +42,10 @@ public class Curso {
     // Método para atribuir valores durante a atualização
     public void setUpdateDate() {
         this.updatedAt = Instant.now();
+    }
+
+    // Construtor para instanciar com o id
+    public Curso(Long cursoId) {
+        this.cursoId = cursoId;
     }
 }
