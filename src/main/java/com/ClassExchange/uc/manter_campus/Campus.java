@@ -25,5 +25,5 @@ public class Campus {
     private String endereco;
 
     @OneToMany(mappedBy = "campus", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Curso> cursos = new ArrayList<>();
+    private List<Curso> cursos;
 }
