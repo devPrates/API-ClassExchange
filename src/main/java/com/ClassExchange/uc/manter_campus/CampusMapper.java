@@ -1,16 +1,18 @@
 package com.ClassExchange.uc.manter_campus;
 
-import org.springframework.beans.BeanUtils;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
-public class CampusMapper {
-    public static Campus toEntity(CampusRequest requestDTO) {
-        Campus campus = new Campus();
-        BeanUtils.copyProperties(requestDTO, campus);
-        return campus;
-    }
+@Mapper(componentModel = "spring")
+public interface CampusMapper {
 
-    public static CampusResponse toResponseDTO(Campus campus) {
-        CampusResponse responseDTO = new CampusResponse(campus.getCampusId(), campus.getName(), campus.getSigla(), campus.getEndereco());
-        return responseDTO;
-    }
+    CampusMapper INSTANCE = Mappers.getMapper(CampusMapper.class);
+
+    // Método de mapeamento da entidade para o DTO de resposta
+    CampusResponse toResponse(Campus campus);
+
+
+    // Método de mapeamento do DTO de requisição para a entidade
+    Campus toEntity(CampusRequest dto);
 }

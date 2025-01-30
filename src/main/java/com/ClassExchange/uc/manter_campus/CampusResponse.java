@@ -1,8 +1,11 @@
 package com.ClassExchange.uc.manter_campus;
 
-public record CampusResponse(
-                            Long id,
-                            String nome,
-                            String sigla,
-                            String endereco
-) { }
+import lombok.Data;
+
+@Data
+public class CampusResponse {
+    private Long campusId;
+    private String name;
+    private String sigla;
+    private String endereco;
+}

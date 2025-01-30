@@ -1,7 +1,10 @@
 package com.ClassExchange.uc.manter_campus;
 
-public record CampusRequest(
-                            String nome,
-                            String sigla,
-                            String endereco
-) { }
+import lombok.Data;
+
+@Data
+public class CampusRequest{
+    private String name;
+    private String sigla;
+    private String endereco;
+}
