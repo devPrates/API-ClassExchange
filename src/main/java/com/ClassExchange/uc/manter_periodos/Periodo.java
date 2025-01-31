@@ -25,7 +25,9 @@ public class Periodo {
 
     private String nome;
 
-    private String tipoPeriodo;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TipoPeriodo tipoPeriodo;
 
     private int numero;
 
@@ -41,4 +43,8 @@ public class Periodo {
 
     @OneToMany(mappedBy = "periodo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Disciplina> disciplinas;
+}
+
+enum TipoPeriodo {
+    ANUAL, BIMESTRAL, SEMESTRAL;
 }
