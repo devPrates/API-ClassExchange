@@ -1,5 +1,9 @@
 package com.ClassExchange.uc.manter_usuarios;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,18 +16,21 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
+@Tag(name = "CRUD - Usuários")
 @EnableMethodSecurity
 public class UserController {
 
     @Autowired
     private UserService userService;
 
+    @Operation(summary = "Cadastrar um novo usuário no sistema", method = "POST")
     @PostMapping
     public ResponseEntity<?> newUser(@RequestBody CreateUserMapper dto) {
         userService.createNewUser(dto);
         return ResponseEntity.ok(Map.of("message", "Usuário criado com sucesso"));
     }
 
+    @Operation(summary = "Excluir um usuário no sistema", method = "DELETE")
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public ResponseEntity<?> deleteUser(@PathVariable("id") UUID userId) {
@@ -31,6 +38,7 @@ public class UserController {
         return ResponseEntity.ok(Map.of("message","Usuário excluido com sucesso"));
     }
 
+    @Operation(summary = "Atualizar um  usuário no sistema", method = "PUT")
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public ResponseEntity<?> updateUser(@PathVariable("id") UUID userId, @RequestBody UpdateUserMapper dto) {
@@ -38,6 +46,7 @@ public class UserController {
         return ResponseEntity.ok(Map.of("message","Usuário atualizado com sucesso"));
     }
 
+    @Operation(summary = "Listar todos os Usuários (ADMIN)", method = "POST")
     @GetMapping
     @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public ResponseEntity<List<User>> listUsers() {
