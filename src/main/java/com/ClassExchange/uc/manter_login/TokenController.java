@@ -48,7 +48,7 @@ public class TokenController {
 
         var claims = JwtClaimsSet.builder()
                 .issuer("API-ClassExchage")
-                .subject(user.get().getUserId().toString())
+                .subject(user.get().getEmail().toString())
                 .issuedAt(now)
                 .expiresAt(now.plusSeconds(expiresIn))
                 .claim("scope", scopes)
@@ -56,6 +56,6 @@ public class TokenController {
 
         var jwtValue = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
 
-        return ResponseEntity.ok(new LoginResponse(jwtValue, expiresIn));
+        return ResponseEntity.ok(new LoginResponse(jwtValue));
     }
 }
