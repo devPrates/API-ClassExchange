@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
-@Tag(name = "CRUD - Usuários")
+@Tag(name = "Controle de Usuários")
 @EnableMethodSecurity
 public class UserController {
 

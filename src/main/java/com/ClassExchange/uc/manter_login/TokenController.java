@@ -2,6 +2,8 @@ package com.ClassExchange.uc.manter_login;
 
 import com.ClassExchange.uc.manter_roles.Role;
 import com.ClassExchange.uc.manter_usuarios.UserRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.Instant;
 import java.util.stream.Collectors;
 
+@Tag(name = "Controle de Token")
 @RestController
 public class TokenController {
 
@@ -28,7 +31,7 @@ public class TokenController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-
+    @Operation(summary = "Realizar login no sistema", method = "POST")
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
 
@@ -39,7 +42,7 @@ public class TokenController {
         }
 
         var now = Instant.now();
-        var expiresIn = 300L;
+        var expiresIn = 7200L; //duas horas
 
         var scopes = user.get().getRoles()
                 .stream()
