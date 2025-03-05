@@ -19,7 +19,7 @@
 </p>
 
 ### Diagrama de Classes
-  <img src="./docs/diagrama-classe.png" alt="Logo do Projeto" >
+  <img src="/docs/diagrama-classes.png" alt="Logo do Projeto" >
 
 ### Diagrama de Casos de Uso
-  <img src="./docs/Diagrama-casos-de-uso.png" alt="Logo do Projeto">
+  <img src="/docs/Diagrama-caso-de-uso.png" alt="Logo do Projeto">
